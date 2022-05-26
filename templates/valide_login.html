@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div id="heading" >
+    <h1>Bonjour {{Nom}} {{Prenom}}</h1>
+</div>
+<section id="main" class="wrapper">
+    <div class="inner">
+        <div class="content">
+            <form method="post" action="/loginValid">
+                <div style="
+                    width: 15%;
+                    margin: 0 auto;
+                  ">
+                    <center><img src="/static/images/Logo_Enim.png" alt="" height="150"></center></p>
+                </div>
+                <div class="row gtr-uniform">
+                    
+                    <div class="col-6 col-12-xsmall">
+
+                        <p>Nouveau mot de passe :</p>
+                        <input type="password" name="mdpNew" id="mdpNew" value="" placeholder="************" />
+                        
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                        <p>Confirmez le mot de passe:</p>
+                        <input type="hidden" name="OID" value="{{logId}}">
+                        <input type="password" name="mdpNew2" id="mdpNew2" value="" placeholder="**********" />
+                    </div>
+                    <div class="col-12">
+                        <ul class="actions">
+                            <li><input type="submit" value="Se connecter" class="primary" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="table-wrapper">
+            <table class="alt">
+                <thead>
+                    <tr>
+                        <th>Etudiant</th>
+                        <th>Organisme d'Accueil</th>
+                        <th>Adresse de l'Organisme</th>
+                        <th>Ville</th>
+                        <th>Date de début</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                        {% for Org in Orgs %}
+                                    
+                            {% for user in users %}
+                                        
+                                {% if Org['user'] == user['_id'] %}
+                                    <tr>
+                                        <td>{{ user['name']}}</td>
+                                        <td>{{ Org['orgName']}}</td>
+                                        <td>{{ Org['adresseOrg']}}</td>
+                                        <td>{{ Org['VilleOrg']}}</td>
+                                        <td>{{ Org['DateDebut']}}</td>
+                                        {% if Org['status'] %}
+                                            <td style="color:rgb(34, 95, 16); text-align: center;"><i class="fa fa-circle"></i></td>
+                                        {%else%}
+                                            <td style="color:rgb(119, 20, 13); text-align: center;"><i class="fa fa-circle"></i></td>
+                                        {% endif %}
+                                    </tr>      
+                                {% endif %}             
+                            {% endfor %}
+                        {% endfor %}
+                    
+                    </tbody>
+                    <tfoot>
+                                    
+                    </tfoot>
+                </table>
+        </div>
+    </div>
+</section>
+
+{% endblock%}

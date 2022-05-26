@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<div style="text-align:center; margin-top: 5%;">
+    <h1>Espace admin</h1>
+</div>
+<section id="main" class="wrapper" style="padding:1rem 0 6rem 0">
+    <div class="inner">
+        <div class="content">
+            <form method="post" action="/Admin">
+                <div style="
+                    width: 15%;
+                    margin: 0 auto;
+                  ">
+                    <center><img src="/static/images/Logo_Enim.png" alt="" height="150"></center></p>
+                </div>
+                <div class="row gtr-uniform">
+                    
+                    <div class="col-6 col-12-xsmall">
+
+                        <p>Login</p>
+                        <input type="text" name="username" id="name" value="" placeholder="Email" />
+                        
+                    </div>
+                    <div class="col-6 col-12-xsmall">
+                        <p>Mot de passe :</p>
+                        <input type="password" name="pass" id="email" value="" placeholder="**********" />
+                    </div>
+                    <div class="col-12">
+                        <ul class="actions">
+                            <li><input type="submit" value="Se connecter" class="primary" /></li>
+                        </ul>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock%}

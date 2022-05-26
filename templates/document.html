@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<!-- Highlights -->
+<section class="wrapper">
+    <div class="inner">
+        <header class="special">
+            <h2>E-Document</h2>
+            <p>Votre Espace digital.</p>
+        </header>
+        <div class="container">
+            <div class="row">
+                    <h2 style="color: blue;">Nouveau Stage</h2> 
+                    <form action="/document/NouveauStage" method="POST">
+                            <div class="row gtr-uniform">
+                                    
+                                <div class="col-12">
+                                    <label for="organisme" style="font-size:24px;font-weight: 400;">Organisme d'accueil :</label>
+                                    <input type="text" name="organisme" id="organisme" placeholder="Organisme d'accueil" />
+                                </div>
+                                <div class="col-12">
+                                    <label for="adresseOrg" style="font-size:24px;font-weight: 400;">Adresse</label>
+                                    <input type="text" name="adresseOrg" id="adresseOrg" placeholder="Adresse" />
+                                </div>
+                                <div class="col-12">
+                                    <label for="VilleOrg" style="font-size:24px;font-weight: 400;">Ville : </label>
+                                    <input type="text" name="VilleOrg" id="VilleOrg" placeholder="Ville" />
+                                </div>
+                                <div class="col-6 col-12-xsmall">
+                                    <label for="DateDebut" style="font-size:24px;font-weight: 400;">Date du début de stage:</label>
+                                    <input type="date" name="DateDebut" id="DateDebut" value="" placeholder="--/--/----" />
+                                </div>
+                                <div class="col-6 col-12-xsmall">
+                                    <label for="Datefin" style="font-size:24px;font-weight: 400;">Date du fin de stage:</label>
+                                    <input type="date" name="Datefin" id="Datefin" value="" placeholder="--/--/----" />
+                                </div>
+                                <div class="col-12">
+                                    <label for="AdresseEncad  " style="font-size:24px;font-weight: 400;">Adresse e-mail de l'encadrant dans l'organisme d'accueil :</label>
+                                    <input type="email" name="AdresseEnc" id="VilleOrg" placeholder="E-mail" />
+                                </div>
+                                <!-- Break -->
+                                <div class="col-12">
+                                    <select name="category" id="category">
+                                        <option value="">- Select -</option>
+                                        <option value="1">Saham Assurance</option>
+                                        <option value="2">Wafa Assurance</option>
+                                        <option value="3">RMA</option>
+                                        <option value="4">AXA Assurance</option>
+                                    </select>
+                                </div>
+                                <!-- Break -->
+                                <div class="col-12">
+                                    <ul class="actions">
+                                        <li><input type="submit" value="Valider" class="primary" /></li>
+                                        <li><input type="reset" value="Re-initialiser" /></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        
+                    </form>
+                    
+
+            <p>
+                <hr style="width: 100%;">
+            </p>
+                
+                
+            </div>
+            <div class="row">
+                <form action="/document" method="POST" enctype=multipart/form-data>
+                    <section>
+                        <div>
+                            <header>
+                                <div class="col-4 col-12-xsmall">
+                                    <input type="radio" id="ATS" name="radio" checked value="ATS">
+                                    <label for="ATS">Attestation de stage</label>
+                                </div>
+                                <div class="col-4 col-12-xsmall">
+                                    <input type="radio" id="FA" name="radio" value="FA">
+                                    <label for="FA">Fiche d'appréciation</label>
+                                </div>
+                                <div class="col-4 col-12-xsmall">
+                                    <input type="radio" id="CONV" name="radio" value="CONV">
+                                    <label for="CONV">Convention de stage</label>
+                                </div>
+                                <a id="fileupload"class="icon fa-download" style="font-size: 75px; color:darkcyan"><span class="label" >Icon</span></a>
+                                ​<input id="upload-file" name="documentImage" type="file" style="display: none;"/>
+                                
+                                <h3>Importez votre document</h3>
+                            </header>
+                            <p>Fiche d'appréciation | Convention de stage | Attestation de stage</p>
+                        </div>
+                    </section>
+                    <section><input type="submit" class="button primary small"></section>
+                </form>
+                
+            </div>
+            <div class="row">
+                {% if filenew %}
+                    <header class="special">
+                        <h2>Fichier importé</h2>
+                    </header>
+                
+                    <img src="../static/images/{{filenew}}" alt="" height="auto" width="800">
+                {% else %}
+                    <header class="special">
+                        <h2>Exemple de document</h2>
+                    </header>
+                    <img src="../static/images/DocumentImage.jpg" alt="" height="auto" width="800">
+                {%endif%}
+
+                {% if b=='1' %}
+                    <section>
+                        <header>
+                             <h3 style="color: darkgreen;font-weight: bold;">{{ocrK}}</h3>{%else%}
+                             <h3 style="color: rgb(100, 0, 0);font-weight: bold;">{{ocrK}}</h3>
+
+                             
+                        </header>
+                        
+
+                    </section>
+                {%endif%}
+                
+            </div>
+        </div>
+            
+           
+            
+            
+            
+        </div>
+    </div>
+</section>
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<script>
+    $("#fileupload").click(function(){
+                                $("#upload-file").click();
+                            });
+</script>
+
+
+
+
+
+{% endblock%}

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+<section id="banner">
+    <div class="inner" >
+        <h1>école Nationale Supèrieure des Mines de Rabat</h1>
+        <p style="color: #ffe000;">E-Service de stage<br />
+        Votre espace digital {%if session['logged_in'] == False%} <a href="/login" style="color: #b6a840;text-decoration:underline;">S'identifiez</a> {%endif%}maintenant et diposez vos documents</p>
+    </div><video autoplay loop muted playsinline src="../static/images/Mines Rabat.mp4"></video>
+</section>
+
+
+{% if username !='Not Found'%}
+<section id="main" class="wrapper">
+    <div class="inner">
+        <div class="table-wrapper">
+            <table class="alt">
+                                <thead>
+                                    <tr>
+                                        <th>Etudiant</th>
+                                        <th>Organisme d'Accueil</th>
+                                        <th>Adresse de l'Organisme</th>
+                                        <th>Ville</th>
+                                        <th>Date de début</th>
+                                        <th>Statut</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for Org in Orgs %}
+                                                <tr>
+                                                    <td>{{ Org['user']['Nom']}} {{Org['user']['Prenom'] }}</td>
+                                                    <td>{{ Org['orgName']}}</td>
+                                                    <td>{{ Org['adresseOrg']}}</td>
+                                                    <td>{{ Org['VilleOrg']}}</td>
+                                                    <td>{{ Org['DateDebut']}}</td>
+                                                    {% if Org['status'] %}
+                                                    <td style="color:rgb(34, 95, 16); text-align: center;"><i class="fa fa-circle"></i></td>
+                                                    {%else%}
+                                                        <td style="color:rgb(119, 20, 13); text-align: center;"><i class="fa fa-circle"></i></td>
+                                                    {% endif %}
+                                                </tr>    
+                                                
+                                                
+                                    {% endfor %}
+                    
+                                </tbody>
+                                <tfoot>
+                                    
+                                </tfoot>
+                            </table>
+        </div>
+
+    </div>
+</section>
+{%endif%}
+{% endblock%}

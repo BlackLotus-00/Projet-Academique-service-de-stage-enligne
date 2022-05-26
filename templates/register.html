@@ -1,0 +1,60 @@
+{% if session.Admin %}
+    {% extends "base.html" %}
+
+
+    {% block content %}
+
+    <section id="main" class="wrapper">
+        <div class="inner">
+            <div class="content">
+                <h3>Ajouter des nouveaux utilisateurs:</h3>
+                <form action="/register" method="POST">    
+                                    <div class="col-6 col-12-xsmall"  style="margin-top: 12px;">
+                                        <input type="submit" value='Ré-initialiser les mots de passes'>
+                                    </div>
+                </form>
+                <p>
+                    <h3>Liste des utilisateurs</h3>
+                </p>
+                <div class="table-wrapper">
+                    <hr>
+                    <table class="alt">
+                                        <thead>
+                                            <tr>
+                                                <th>Nom</th>
+                                                <th>Prénom</th>
+                                                <th>Email</th>
+                                                <th>Filière / option</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for user in users %}
+                                                <tr>
+                                                    <td>{{user.Nom}}</td>
+                                                    <td>{{user.Prenom}}</td>
+                                                    <td>{{user.name}}</td>
+                                                    <td>{{user.Acronyme_Filiere}}</td>
+                                                </tr>
+                                            {% endfor %}
+                            
+                                        </tbody>
+                                        <tfoot>
+                                            
+                                        </tfoot>
+                                    </table>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+
+
+
+    {% endblock%}
+    {% else %}
+    {% include "404.html" %}
+
+    
+      
+{% endif %}
